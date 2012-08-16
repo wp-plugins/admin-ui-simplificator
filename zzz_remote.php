@@ -23,7 +23,7 @@ $default_content = <<<EOF
 <div class="link_list_container">
     <ul class="link_list">
         <li><a href='http://webweb.ca/site/products/digishop/' target='_blank'>DigiShop</a></li>
-        <li><a href='http://webweb.ca/site/products/admin_ui_simplificator/' target='_blank'>Admin UI Simplificator</a></li>
+        <li><a href='http://orbisius.com/site/portfolio/free-open-source-projects/admin-ui-simplificator/' target='_blank'>Admin UI Simplificator</a></li>
         <li><a href='http://webweb.ca/site/products/wordpress-simple-paypal-shopping-cart-ui/' target='_blank'>UI for WordPress Simple Paypal Shopping Cart</a></li>
         <li><a href='http://webweb.ca/site/products/wp-mibew/' target='_blank'>WP Mibew</a></li>
         <li><a href='http://webweb.ca/site/products/wp-member-status' target='_blank'>WP Member Status</a></li>
