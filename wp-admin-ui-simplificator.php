@@ -535,7 +535,7 @@ class Orbisius_WP_Admin_UI_Simplificator {
      */
     public function administration_menu() {
         // Settings > FirstInsLeadForm
-        add_options_page(__($this->plugin_name, "ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR"), __($this->plugin_name, "ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR"), 'manage_options', $this->plugin_dir_name . '/menu.settings.php');
+//        add_options_page(__($this->plugin_name, "ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR"), __($this->plugin_name, "ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR"), 'manage_options', $this->plugin_dir_name . '/menu.settings.php');
         
 		if (!$this->canSimplify()) { // if this is the admin user show the plugin section
 	        add_menu_page(__($this->plugin_name, $this->plugin_dir_name), __($this->plugin_name, $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.dashboard.php', null, $this->plugin_url . '/images/cup.png');
