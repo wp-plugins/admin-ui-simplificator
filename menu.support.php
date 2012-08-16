@@ -15,9 +15,9 @@
             <h3>How to use the plugin</h3>
             <p>
                 <ol>
-                    <li>Install, Activate & Enable the plugin</li>
+                    <li>Install and Activate the plugin</li>
                     <li>Create a separate account for your client</li>
-                    <li>The client logs in and sees clean admin area</li>
+                    <li>When the client logs in and he/she will sees clean WordPress admin area</li>
                 </ol>
 
                 After you activate the plugin. Other users will see the cleaned version of the admin area.
