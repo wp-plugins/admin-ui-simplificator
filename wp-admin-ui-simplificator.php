@@ -496,7 +496,6 @@ JS_EOF;
         $opts = array();
 
         $opts['status'] = 0;
-        $opts['db_checked'] = 0;
         $this->set_options($opts);
     }
 
