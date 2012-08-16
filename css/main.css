@@ -71,6 +71,11 @@
     padding: 0;
     width: 20%;
 }
+.webweb_wp_admin_ui_simplificator_admin .remote_content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    clear: both;
+}
 
 .webweb_wp_admin_ui_simplificator_admin .link_list li a {
     background: url("../zzz_media/star.png") no-repeat scroll 0 0 transparent;

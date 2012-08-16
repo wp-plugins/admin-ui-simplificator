@@ -55,7 +55,7 @@ class Orbisius_WP_Admin_UI_Simplificator {
     private $plugin_dir_name = null; // filled in later
     private $plugin_data_dir = null; // plugin data directory. for reports and data storing. filled in later
     private $plugin_name = 'Admin UI Simplificator'; //
-    private $plugin_id_str = 'wp_admin_ui_simplificator'; //
+    private $plugin_id_str = 'admin_ui_simplificator'; //
     private $plugin_business_sandbox = false; // sandbox or live ???
     private $plugin_business_email_sandbox = 'seller_1264288169_biz@slavi.biz'; // used for paypal payments
     private $plugin_business_email = 'billing@WebWeb.ca'; // used for paypal payments
@@ -161,7 +161,6 @@ class Orbisius_WP_Admin_UI_Simplificator {
      */
     function load_scripts() {
         $scripts = array(
-            
         );
 
         wp_enqueue_script('jquery');
@@ -209,6 +208,11 @@ class Orbisius_WP_Admin_UI_Simplificator {
             
             wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, filemtime(ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR_BASE_DIR . '/css/main.css'));
             wp_enqueue_style($this->plugin_dir_name);
+
+            /*wp_enqueue_script(
+                $this->plugin_id_str . '_main_js',
+                $this->plugin_url . 'js/main.js'
+            );*/
         }
 
         if (!is_feed()) {
@@ -217,6 +221,29 @@ class Orbisius_WP_Admin_UI_Simplificator {
         }
         
 		add_action('wp_enqueue_scripts', array($this, 'load_scripts'));
+
+        // Add hook for admin <head></head>
+        add_action('admin_head', array($this, 'my_custom_js'));
+        // Add hook for front-end <head></head>
+//        add_action('wp_head', array($this, 'my_custom_js'));
+    }
+
+    /**
+     * @see http://stackoverflow.com/questions/5849057/adding-script-to-wordpress-in-head-elemen
+     */
+    function my_custom_js() {
+        $plugin_url = $this->plugin_url;
+
+        echo <<< JS_EOF
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        if (jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content")) {
+            jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").html('Loading');
+            jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").load('{$plugin_url}zzz_remote.php');
+        }
+    });
+</script>
+JS_EOF;
     }
 
     /**
@@ -1068,5 +1095,228 @@ class Orbisius_WP_Admin_UI_SimplificatorUtil {
         $msg = "<p class='status_wrapper'><div class=\"status_msg $cls\">$msg</div></p>";
 
         return $msg;
+    }
+}
+
+/**
+ * This class is a common class for every plugin developed by WebWeb.ca team.
+ *
+ * @author Svetoslav Marinov | http://WebWeb.ca
+ */
+class Orbisius_WP_Admin_UI_SimplificatorCrawler {
+
+    protected $user_agent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0";
+    protected $error = null;
+    protected $buffer = null;
+
+    function __construct() {
+        ini_set('user_agent', $this->user_agent);
+    }
+
+    /**
+     * Error(s) from the last request
+     *
+     * @return string
+     */
+    function getError() {
+        return $this->error;
+    }
+
+    // checks if buffer is gzip encoded
+    function is_gziped($buffer) {
+        return (strcmp(substr($buffer, 0, 8), "\x1f\x8b\x08\x00\x00\x00\x00\x00") === 0) ? true : false;
+    }
+
+    /*
+      henryk at ploetzli dot ch
+      15-Feb-2002 04:28
+      http://php.online.bg/manual/hu/function.gzencode.php
+     */
+
+    function gzdecode($string) {
+        if (!function_exists('gzinflate')) {
+            return false;
+        }
+
+        $string = substr($string, 10);
+        return gzinflate($string);
+    }
+
+    /**
+     * Fetches a url and saves the data into an instance variable. The returned status is whether the request was successful.
+     *
+     * @param string $url
+     * @return bool
+     */
+    function fetch($url) {
+        $ok = 0;
+        $buffer = '';
+
+        $url = trim($url);
+
+        if (!preg_match("@^(?:ht|f)tps?://@si", $url)) {
+            $url = "http://" . $url;
+        }
+
+        // try #1 cURL
+        // http://fr.php.net/manual/en/function.fopen.php
+        if (empty($ok)) {
+            if (function_exists("curl_init") && extension_loaded('curl')) {
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept-Encoding: gzip'));
+                curl_setopt($ch, CURLOPT_TIMEOUT, 45);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                curl_setopt($ch, CURLOPT_MAXREDIRS, 5); /* Max redirection to follow */
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+                curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
+                /* curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC ) ; // in the future pwd protected dirs
+                  curl_setopt($ch, CURLOPT_USERPWD, "username:password"); */ //  http://php.net/manual/en/function.curl-setopt.php
+
+                $string = curl_exec($ch);
+                $curl_res = curl_error($ch);
+
+                curl_close($ch);
+
+                if (empty($curl_res) && strlen($string)) {
+                    if ($this->is_gziped($string)) {
+                        $string = $this->gzdecode($string);
+                    }
+
+                    $this->buffer = $string;
+
+                    return 1;
+                } else {
+                    $this->error = $curl_res;
+                    return 0;
+                }
+            }
+        } // empty ok*/
+        // try #2 file_get_contents
+        if (empty($ok)) {
+            $buffer = @file_get_contents($url);
+
+            if (!empty($buffer)) {
+                $this->buffer = $buffer;
+                return 1;
+            }
+        }
+
+        // try #3 fopen
+        if (empty($ok) && preg_match("@1|on@si", ini_get("allow_url_fopen"))) {
+            $fp = @fopen($url, "r");
+
+            if (!empty($fp)) {
+                $in = '';
+
+                while (!feof($fp)) {
+                    $in .= fgets($fp, 8192);
+                }
+
+                @fclose($fp);
+                $buffer = $in;
+
+                if (!empty($buffer)) {
+                    $this->buffer = $buffer;
+                    return 1;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    function get_content() {
+        return $this->buffer;
+    }
+}
+
+/**
+ * This class is a common class for every plugin developed by WebWeb.ca team.
+ *
+ * @author Svetoslav Marinov | http://WebWeb.ca
+ * @package WebWeb_WP_LikeGateCommon
+ */
+class Orbisius_WP_Admin_UI_SimplificatorService {
+    private $live = 0; // turn on when live!
+    private $service_end_point = 'http://orbisius.com/service/kv/1.0/';
+    private $dev_service_end_point = 'http://localhost/service/kv/1.0/';
+
+    private $method = null;
+    private $params = array();
+    private $meta = array();
+    private $data = array();
+
+    /**
+     * Setups the method to be called and
+     */
+    public function __construct($method, $params = array()) {
+        $method = strtolower($method);
+        $method = trim($method, ' .');
+        
+        // The format should be: wp.plugins.get_all as this API can be used by modile apps someday
+        if (!preg_match('#^[a-z][\w-]+\.([a-z][\w-]+\.)?[a-z][\w-]+$#si', $method)) {
+            throw new Exception('Invalid method.');
+        }
+
+        $this->live = empty($_SERVER['DEV_ENV']); // if it exists -> on dev machine.
+
+        $this->method = $method;
+        $this->params = $params;
+    }
+
+    /**
+     * Calls the remote service.
+     * It currently relies on caching from the calling method because
+     * I am assumming the data will be saved into the db.
+     * The result will contain data and meta section
+     */
+    public function call() {
+        $browser = new Orbisius_WP_Admin_UI_SimplificatorCrawler();
+
+        $end_point = $this->live ? $this->service_end_point : $this->dev_service_end_point;
+
+        $url = $end_point . '?' . http_build_query(array('method' => $this->method, 'params' => $this->params));
+
+        $this->status = 0;
+        $result_buffer = array();
+
+        if ($browser->fetch($url)) {
+            $buffer = $browser->get_content();
+
+            parse_str($buffer, $result_buffer);
+
+            if (!empty($result_buffer['meta'])) {
+                $this->meta = $result_buffer['meta'];
+                $this->data = $result_buffer['data'];
+                $this->status = 1;
+            }
+        }
+
+        return $this->status;
+    }
+
+    /**
+     * returns the meta that was previously filled out by a recent ->call
+     * @param void
+     * @return array
+     */
+    public function get_meta() {
+        return $this->meta;
+    }
+
+    /**
+     * returns the data that was previously filled out by a recent ->call
+     * @param void
+     * @return array
+     */
+    public function get_data() {
+        return $this->data;
     }
 }
