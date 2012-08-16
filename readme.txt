@@ -18,9 +18,9 @@ Clients don't need to know or see anything about plugins, themes, available upda
 
 = Usage =
 
-* Install, Activate & Enable the plugin
+* Install and Activate the plugin
 * Create a separate account for your client
-* The client logs in and sees clean admin area
+* Everybody except the user who activated the plugin will sees the simplified WordPress admin area
 
 = Demo =
 
