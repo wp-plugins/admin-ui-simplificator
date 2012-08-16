@@ -7,7 +7,9 @@ $opts = $orb_wp_simple_ui_obj->get_options();
         <div class="main_content">
             <h2><?php echo __('Dashboard', 'webweb_member_status') ?></h2>
 
-            <p>Please check the <a href="<?php echo $orb_wp_simple_ui_obj->get('plugin_admin_url_prefix');?>/menu.support.php">Help</a> section if you need instructions how to use this plugin.</p>
+            <div class="app_message_box app_error">
+                Please check the <a href="<?php echo $orb_wp_simple_ui_obj->get('plugin_admin_url_prefix');?>/menu.support.php">Help</a> section if you need instructions how to use this plugin.
+            </div>
 
             <table class="app_table">
                 <tr>
