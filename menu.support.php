@@ -17,10 +17,8 @@
                 <ol>
                     <li>Install and Activate the plugin</li>
                     <li>Create a separate account for your client</li>
-                    <li>When the client logs in and he/she will sees clean WordPress admin area</li>
+                    <li>Everybody except the user who activated the plugin will sees the simplified WordPress admin area</li>
                 </ol>
-
-                After you activate the plugin. Other users will see the cleaned version of the admin area.
             </p>
 
             <h3>Demo</h3>
