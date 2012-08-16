@@ -38,6 +38,8 @@ http://www.youtube.com/watch?v=xQLe2uxmWiA
 
 Svetoslav Marinov (Slavi) | <a href="http://orbisius.com" title="Custom Web Programming, Web Design, e-commerce, e-store, Wordpress Plugin Development, Facebook and Mobile App Development in Niagara Falls, St. Catharines, Ontario, Canada" target="_blank">Custom Web and Mobile Programming by Orbisius.com</a>
 
+Icon Credits: famfamfam
+
 == Installation ==
 
 = Automatic Install =
