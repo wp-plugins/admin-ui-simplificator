@@ -1,10 +1,3 @@
-<style>
-    .webweb_wp_admin_ui_simplificator_admin_sidebar .more_plugins_list li a {
-        background: url("<?php echo $orb_wp_simple_ui_obj->get('plugin_url')?>/zzz_media/star.png") no-repeat scroll 0 0 transparent;
-        padding: 0 0 3px 20px;
-    }
-</style>
-
 <div class="admin_sidebar">
     <div class="dashed_border"><a href="http://orbisius.com/go/intro2site?s=<?php echo $orb_wp_simple_ui_obj->get('plugin_id_str'); ?>"
                                                 target="_blank">Free e-book: How to Build a Website Using WordPress: Beginners Guide</a>

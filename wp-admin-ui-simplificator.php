@@ -203,9 +203,11 @@ class Orbisius_WP_Admin_UI_Simplificator {
                 add_action('admin_menu', array($this, 'remove_menus'), 9999);
                 add_action('admin_bar_menu', array($this, 'remove_nav_bar_items'), 9999);
                 add_action('wp_dashboard_setup', array($this, 'remove_dashboard_widgets'), 9999);				
+            } else {
+                add_action('admin_bar_menu', array($this, 'add_switch'), 9999);
             }
             
-            wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, time()); // 0.31
+            wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, filemtime(ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR_BASE_DIR . '/css/main.css'));
             wp_enqueue_style($this->plugin_dir_name);
         }
 
@@ -226,7 +228,7 @@ class Orbisius_WP_Admin_UI_Simplificator {
         $current_user = $this->get_user();
 
         // Hide the menu only for other users/admins
-        if (0 && !empty($opts['skip_simplification_for_id']) && $current_user->ID != $opts['skip_simplification_for_id']) {
+        if (!empty($opts['skip_simplification_for_id']) && $current_user->ID != $opts['skip_simplification_for_id']) {
             $status = true;
         }
 
@@ -260,6 +262,26 @@ class Orbisius_WP_Admin_UI_Simplificator {
         unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
         unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
         unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);*/
+    }
+
+    /**
+     * TODO: allow switching to default UI on/off
+     */
+    function add_switch($wp_admin_bar) {
+        $opts = $this->get_options();
+        
+        // if the main admin has allowed the other users to swtich put this in the admin
+        if (0&&!empty($opts['allow_switch_to_default_ui_on_off'])) {
+            $args = array(
+                'id' => $this->plugin_id_str . '_switch_to_default_ui_on_off', // id of the existing child node (New > Post)
+                'title' => 'Switch to Simple', // alter the title of existing node
+                'parent' => false, // 'top-secondary' // set parent to false to make it a top level (parent) node
+                'href' => '',
+                'meta' => array('class' => 'ab-top-secondary'),
+            );
+
+            $wp_admin_bar->add_node($args);
+        }
     }
 
     /**

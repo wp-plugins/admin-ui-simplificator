@@ -72,6 +72,11 @@
     width: 20%;
 }
 
+.webweb_wp_admin_ui_simplificator_admin .link_list li a {
+    background: url("../zzz_media/star.png") no-repeat scroll 0 0 transparent;
+    padding: 0 0 3px 20px;
+}
+
 .webweb_wp_admin_ui_simplificator_admin .dashed_border {
     border:1px dashed red;
     padding:5px;

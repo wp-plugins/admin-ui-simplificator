@@ -38,12 +38,12 @@ $current_user = $orb_wp_simple_ui_obj->get_user();
                             <br/> Your User ID: <?php echo $current_user->ID; ?>
                         </td>
                     </tr>
-                    <tr valign="top">
+                    <tr valign="top" class="app_hide"> <!-- TODO -->
                         <th scope="row">Allow users to switch between simple and default Admin UI</th>
                         <td>
                             <label for="allow_switch_on_off">
-                                <input type="checkbox" id="allow_switch_on_off" name="<?php echo $settings_key; ?>[allow_switch_on_off]"
-                                    value="1" <?php echo empty($opts['allow_switch_on_off']) ? '' : 'checked="checked"'; ?> /> Enable
+                                <input type="checkbox" id="allow_switch_on_off" name="<?php echo $settings_key; ?>[allow_switch_to_default_ui_on_off]"
+                                    value="1" <?php echo empty($opts['allow_switch_to_default_ui_on_off']) ? '' : 'checked="checked"'; ?> /> Enable
                             </label>
                         </td>
                     </tr>
