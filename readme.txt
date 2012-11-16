@@ -51,6 +51,10 @@ Please go to Wordpress Admin &gt; Plugins &gt; Add New Plugin &gt; Search for: A
 
 == Frequently Asked Questions ==
 
+If you happen to remove the original admin account and then enter your current admin user ID and click on save
+http://yoursite.com/wp-admin/options-general.php?page=wp-admin-ui-simplificator-pro/menu.settings.php
+
+
 Run into issues or have questions/suggestions? Send them to help@orbisius.com
 
 == Screenshots ==
