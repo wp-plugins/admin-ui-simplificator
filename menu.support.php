@@ -20,6 +20,16 @@
                     <li>Everybody except the user who activated the plugin will sees the simplified WordPress admin area</li>
                 </ol>
             </p>
+			
+			<h3>How to get support</h3>
+			<div class="update-nag">
+				
+				<p>
+					<strong>Support is handled in our own support forums <a href="http://club.orbisius.com/forums/" target="_blank">http://club.orbisius.com/forums/</a>
+					<br/>Please do NOT use the WordPress forums to seek support.
+					</strong>
+				</p>
+			</div>
 
             <h3>Demo</h3>
 
