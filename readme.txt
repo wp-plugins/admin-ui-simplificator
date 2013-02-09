@@ -3,8 +3,8 @@ Contributors: lordspace
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7APYDVPBCSY9A
 Tags: admin ui, ux, admin ui, simple, simplificator, adminimize, better ui, better ux, simple ui color, scheme, theme, admin, dashboard, color scheme, plugin, interface, ui, metabox, hide, editor, minimal, menu, customization, interface, administration, lite, light, usability, lightweight, layout, zen
 Requires at least: 2.0.2
-Tested up to: 3.4.1
-Stable tag: 1.0.0
+Tested up to: 3.5.1
+Stable tag: 1.0.1
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
 
