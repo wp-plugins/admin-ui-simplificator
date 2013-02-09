@@ -238,7 +238,7 @@ class Orbisius_WP_Admin_UI_Simplificator {
 <script type="text/javascript">
     jQuery(document).ready(function() {
         if (jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content")) {
-            jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").html('Loading');
+            jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").html('Loading...');
             jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").load('{$plugin_url}zzz_remote.php');
         }
     });

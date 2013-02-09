@@ -11,12 +11,13 @@ require_once(dirname(__FILE__) . '/' . 'wp-admin-ui-simplificator.php');
 $upload_dir = wp_upload_dir();
 
 $buff = '';
+$plugin_id_str = $orb_wp_simple_ui_obj->get('plugin_id_str');
 
 $default_content = <<<EOF
 <!-- wp_content: default -->
 <div class="dashed_border">
     <h3>FREE e-book</h3>
-    <a target="_blank" href="http://orbisius.com/go/intro2site?s=wp_admin_ui_simplificator">Free e-book: How to Build a Website Using WordPress: Beginners Guide</a>
+    <a target="_blank" href="http://orbisius.com/go/intro2site?s=$plugin_id_str">Free e-book: How to Build a Website Using WordPress: Beginners Guide</a>
 </div>
 
 <h3>More Plugins by <a href="http://orbisius.com" target="_blank">http://orbisius.com</a></h3>
@@ -44,7 +45,7 @@ if (!empty($upload_dir['basedir'])) {
         $buff = Orbisius_WP_Admin_UI_SimplificatorUtil::read($file);
     } else {
         $params = array(
-            'plugin_id_str' => $orb_wp_simple_ui_obj->get('plugin_id_str'),
+            'plugin_id_str' => $plugin_id_str,
         );
         
         $service = new Orbisius_WP_Admin_UI_SimplificatorService('wp.get_content', $params);
