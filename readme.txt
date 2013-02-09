@@ -10,6 +10,8 @@ The plugin simplifies the WordPress admin user interface by hiding most of the W
 
 == Description ==
 
+**NOTE:** Please do NOT use the WordPress forums to seek support. Support is handled in our own support forums](http://club.orbisius.com/forums/)
+
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
 This doesn't mean that the functionality is not accessible. It is just hidden.
 Also the admin navigation bar is cleaned as well.
