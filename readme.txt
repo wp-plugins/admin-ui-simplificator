@@ -10,7 +10,8 @@ The plugin simplifies the WordPress admin user interface by hiding most of the W
 
 == Description ==
 
-**NOTE:** Please do NOT use the WordPress forums to seek support. Support is handled in our own support forums](http://club.orbisius.com/forums/)
+**NOTE: ** Support is handled in our support forums: http://club.orbisius.com/forums/ 
+Please do NOT use the WordPress forums to seek support. 
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
 This doesn't mean that the functionality is not accessible. It is just hidden.
@@ -57,7 +58,8 @@ If you happen to remove the original admin account and then enter your current a
 http://yoursite.com/wp-admin/options-general.php?page=wp-admin-ui-simplificator-pro/menu.settings.php
 
 
-Run into issues or have questions/suggestions? Send them to help@orbisius.com
+Run into issues or have questions/suggestions? 
+Visit our support forums: http://club.orbisius.com/forums/ 
 
 == Screenshots ==
 1. Admin area after the plugin activation.
@@ -66,6 +68,10 @@ Run into issues or have questions/suggestions? Send them to help@orbisius.com
 n/a
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixes & improvements
+* Added links to support forums
 
 = 1.0.0 =
 * Initial Release
