@@ -10,7 +10,7 @@ The plugin simplifies the WordPress admin user interface by hiding most of the W
 
 == Description ==
 
-**NOTE: ** Support is handled in our support forums: http://club.orbisius.com/forums/ 
+**NOTE: ** Support is handled in our support forums: <a href="http://club.orbisius.com/forums/" target="_blank" title="[new window]">http://club.orbisius.com/forums/</a>
 Please do NOT use the WordPress forums to seek support. 
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
