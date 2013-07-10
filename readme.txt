@@ -3,14 +3,15 @@ Contributors: lordspace
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7APYDVPBCSY9A
 Tags: admin ui, ux, admin ui, simple, simplificator, adminimize, better ui, better ux, simple ui color, scheme, theme, admin, dashboard, color scheme, plugin, interface, ui, metabox, hide, editor, minimal, menu, customization, interface, administration, lite, light, usability, lightweight, layout, zen
 Requires at least: 2.0.2
-Tested up to: 3.5.1
-Stable tag: 1.0.1
+Tested up to: 3.5.2
+Stable tag: 1.0.2
+License: GPL v2
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
 
 == Description ==
 
-**NOTE: ** Support is handled in our support forums: <a href="http://club.orbisius.com/forums/" target="_blank" title="[new window]">http://club.orbisius.com/forums/</a>
+**NOTE: ** Support is handled in our support forums: <a href="http://club.orbisius.com/support/?utm_source=admin-ui-simplificator&utm_medium=readme&utm_campaign=plugin-update" target="_blank" title="[new window]">http://club.orbisius.com/forums/</a>
 Please do NOT use the WordPress forums to seek support. 
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
@@ -39,7 +40,7 @@ http://www.youtube.com/watch?v=xQLe2uxmWiA
 
 = Author =
 
-Svetoslav Marinov (Slavi) | <a href="http://orbisius.com" title="Custom Web Programming, Web Design, e-commerce, e-store, Wordpress Plugin Development, Facebook and Mobile App Development in Niagara Falls, St. Catharines, Ontario, Canada" target="_blank">Custom Web and Mobile Programming by Orbisius.com</a>
+Svetoslav Marinov (Slavi) | <a href="http://orbisius.com/?utm_source=admin-ui-simplificator&utm_medium=readme-author&utm_campaign=plugin-update" title="Custom Web Programming, Web Design, e-commerce, e-store, Wordpress Plugin Development, Facebook and Mobile App Development in Niagara Falls, St. Catharines, Ontario, Canada" target="_blank">Custom Web and Mobile Programming by Orbisius.com</a>
 
 Icon Credits: famfamfam
 
@@ -55,11 +56,11 @@ Please go to Wordpress Admin &gt; Plugins &gt; Add New Plugin &gt; Search for: A
 == Frequently Asked Questions ==
 
 If you happen to remove the original admin account and then enter your current admin user ID and click on save
-http://yoursite.com/wp-admin/options-general.php?page=wp-admin-ui-simplificator-pro/menu.settings.php
+yoursite.com/wp-admin/options-general.php?page=wp-admin-ui-simplificator-pro/menu.settings.php
 
 
 Run into issues or have questions/suggestions? 
-Visit our support forums: http://club.orbisius.com/forums/ 
+Visit our support forums: <a href="http://club.orbisius.com/support/?utm_source=admin-ui-simplificator&utm_medium=readme-faq&utm_campaign=plugin-update" target="_blank" title="[new window]">http://club.orbisius.com/forums/</a>
 
 == Screenshots ==
 1. Admin area after the plugin activation.
@@ -68,6 +69,9 @@ Visit our support forums: http://club.orbisius.com/forums/
 n/a
 
 == Changelog ==
+
+= 1.0.2 =
+* Tested for wp 3.5.2
 
 = 1.0.1 =
 * Fixes & improvements
