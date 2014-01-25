@@ -2,17 +2,14 @@
 Contributors: lordspace
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7APYDVPBCSY9A
 Tags: admin ui, ux, admin ui, simple, simplificator, adminimize, better ui, better ux, simple ui color, scheme, theme, admin, dashboard, color scheme, plugin, interface, ui, metabox, hide, editor, minimal, menu, customization, interface, administration, lite, light, usability, lightweight, layout, zen
-Requires at least: 2.0.2
-Tested up to: 3.5.2
-Stable tag: 1.0.2
+Requires at least: 2.6.2
+Tested up to: 3.8.1
+Stable tag: 1.0.3
 License: GPL v2
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
 
 == Description ==
-
-**NOTE: ** Support is handled in our support forums: <a href="http://club.orbisius.com/support/?utm_source=admin-ui-simplificator&utm_medium=readme&utm_campaign=plugin-update" target="_blank" title="[new window]">http://club.orbisius.com/forums/</a>
-Please do NOT use the WordPress forums to seek support. 
 
 The plugin simplifies the WordPress admin user interface by hiding most of the WordPress menus.
 This doesn't mean that the functionality is not accessible. It is just hidden.
@@ -25,6 +22,9 @@ Clients don't need to know or see anything about plugins, themes, available upda
 * Install and Activate the plugin
 * Create a separate account for your client
 * Everybody except the user who activated the plugin will sees the simplified WordPress admin area
+
+If you end up locking yourself out add this line to your *wp-config.php* file just right after the opening <?php tag.
+define('ADMIN_UI_SIMPLIFICATOR_DISABLE', 1);
 
 = Demo =
 
@@ -44,6 +44,9 @@ Svetoslav Marinov (Slavi) | <a href="http://orbisius.com/?utm_source=admin-ui-si
 
 Icon Credits: famfamfam
 
+**NOTE: ** Support is handled in our support forums: <a href="http://club.orbisius.com/support/?utm_source=admin-ui-simplificator&utm_medium=readme&utm_campaign=plugin-update" target="_blank" title="[new window]">http://club.orbisius.com/forums/</a>
+Please do NOT use the WordPress forums to seek support. 
+
 == Installation ==
 
 = Automatic Install =
@@ -55,8 +58,12 @@ Please go to Wordpress Admin &gt; Plugins &gt; Add New Plugin &gt; Search for: A
 
 == Frequently Asked Questions ==
 
+If you end up locking yourself out add this line to your *wp-config.php* file just right after the opening <?php tag.
+define('ADMIN_UI_SIMPLIFICATOR_DISABLE', 1);
+
+
 If you happen to remove the original admin account and then enter your current admin user ID and click on save
-yoursite.com/wp-admin/options-general.php?page=wp-admin-ui-simplificator-pro/menu.settings.php
+yoursite.com/wordpress/wp-admin/admin.php?page=admin-ui-simplificator/menu.settings.php
 
 
 Run into issues or have questions/suggestions? 
@@ -69,6 +76,10 @@ Visit our support forums: <a href="http://club.orbisius.com/support/?utm_source=
 n/a
 
 == Changelog ==
+
+= 1.0.3 =
+* Added a constant 'ADMIN_UI_SIMPLIFICATOR_DISABLE' that will allow you to access the admin area
+* Tested for wp 3.8.1
 
 = 1.0.2 =
 * Tested for wp 3.5.2

@@ -4,7 +4,7 @@
   Plugin Name: Admin UI Simplificator
   Plugin URI: http://orbisius.com
   Description: The plugin simplifies the WordPress admin area
-  Version: 1.0.2
+  Version: 1.0.3
   Author: Svetoslav Marinov (Slavi)
   Author URI: http://orbisius.com
   License: GPL v2
@@ -254,6 +254,10 @@ JS_EOF;
         $opts = $this->get_options();
         $current_user = $this->get_user();
 
+		if (defined('ADMIN_UI_SIMPLIFICATOR_DISABLE') && ADMIN_UI_SIMPLIFICATOR_DISABLE) {
+			return false;
+		}
+		
         // Hide the menu only for other users/admins
         if (!empty($opts['skip_simplification_for_id']) && $current_user->ID != $opts['skip_simplification_for_id']) {
             $status = true;

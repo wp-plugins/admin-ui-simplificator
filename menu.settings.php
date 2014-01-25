@@ -35,7 +35,10 @@ $current_user = $orb_wp_simple_ui_obj->get_user();
                         <th scope="row">Skip Simplification for User ID:</th>
                         <td><input type="text" name="<?php echo $settings_key; ?>[skip_simplification_for_id]"
                                    value="<?php echo $opts['skip_simplification_for_id']; ?>" class="input_field" />
-                            <br/> Your User ID: <?php echo $current_user->ID; ?>
+                             Your User ID: <?php echo $current_user->ID; ?>
+							
+							<br/>If you end up locking yourself out add this line to your wp-config.php file just right after the opening &lt;?php tag.
+							<strong>define('ADMIN_UI_SIMPLIFICATOR_DISABLE', 1);</strong>
                         </td>
                     </tr>
                     <tr valign="top" class="app_hide"> <!-- TODO -->
@@ -50,7 +53,7 @@ $current_user = $orb_wp_simple_ui_obj->get_user();
                 </table>
                 
                 <p class="submit">
-                    <input type="submit" class="button-primary" value="<?php _e('Save') ?>" />
+                    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
                 </p>
             </form>
         </div> <!-- /main_content -->
