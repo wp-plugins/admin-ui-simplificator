@@ -2,7 +2,7 @@
 
 /*
   Plugin Name: Admin UI Simplificator
-  Plugin URI: http://orbisius.com
+  Plugin URI: http://club.orbisius.com/products/wordpress-plugins/admin-ui-simplificator/
   Description: The plugin simplifies the WordPress admin area
   Version: 1.0.3
   Author: Svetoslav Marinov (Slavi)

@@ -79,7 +79,9 @@ n/a
 
 = 1.0.3 =
 * Added a constant 'ADMIN_UI_SIMPLIFICATOR_DISABLE' that will allow you to access the admin area
+* Improved settings UI
 * Tested for wp 3.8.1
+* Added links to forum and product page
 
 = 1.0.2 =
 * Tested for wp 3.5.2
