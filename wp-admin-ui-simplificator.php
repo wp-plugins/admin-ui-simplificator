@@ -58,7 +58,7 @@ class Orbisius_WP_Admin_UI_Simplificator {
     private $plugin_id_str = 'admin_ui_simplificator'; //
     private $plugin_business_sandbox = false; // sandbox or live ???
     private $plugin_business_email_sandbox = 'seller_1264288169_biz@slavi.biz'; // used for paypal payments
-    private $plugin_business_email = 'billing@WebWeb.ca'; // used for paypal payments
+    private $plugin_business_email = 'billing@orbisius.com'; // used for paypal payments
     private $plugin_business_ipn = 'http://webweb.ca/wp/hosted/payment/ipn.php'; // used for paypal IPN payments
     //private $plugin_business_status_url = 'http://localhost/wp/hosted/payment/status.php'; // used after paypal TXN to to avoid warning of non-ssl return urls
     private $plugin_business_status_url = 'https://ssl.webweb.ca/webweb.ca/wp/hosted/payment/status.php'; // used after paypal TXN to to avoid warning of non-ssl return urls
