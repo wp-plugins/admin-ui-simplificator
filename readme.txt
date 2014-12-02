@@ -3,7 +3,7 @@ Contributors: lordspace
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7APYDVPBCSY9A
 Tags: admin ui, ux, admin ui, simple, simplificator, adminimize, better ui, better ux, simple ui color, scheme, theme, admin, dashboard, color scheme, plugin, interface, ui, metabox, hide, editor, minimal, menu, customization, interface, administration, lite, light, usability, lightweight, layout, zen
 Requires at least: 2.6.2
-Tested up to: 3.8.1
+Tested up to: 4.0.1
 Stable tag: 1.0.3
 License: GPL v2
 
@@ -76,6 +76,12 @@ Visit our support forums: <a href="http://club.orbisius.com/support/?utm_source=
 n/a
 
 == Changelog ==
+
+= 1.0.4 =
+* Fixed warnings on not calling a static method
+* Fixed warnings on use of get_option
+* Fixed numerous warnings
+* Tested with WP 4.0.1
 
 = 1.0.3 =
 * Added a constant 'ADMIN_UI_SIMPLIFICATOR_DISABLE' that will allow you to access the admin area

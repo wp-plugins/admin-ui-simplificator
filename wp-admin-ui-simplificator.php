@@ -4,7 +4,7 @@
   Plugin Name: Admin UI Simplificator
   Plugin URI: http://club.orbisius.com/products/wordpress-plugins/admin-ui-simplificator/
   Description: The plugin simplifies the WordPress admin area
-  Version: 1.0.3
+  Version: 1.0.4
   Author: Svetoslav Marinov (Slavi)
   Author URI: http://orbisius.com
   License: GPL v2
@@ -41,7 +41,6 @@ if (empty($_ENV['ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR_TEST'])) {
 
     register_activation_hook(__FILE__, array($orb_wp_simple_ui_obj, 'on_activate'));
     register_deactivation_hook(__FILE__, array($orb_wp_simple_ui_obj, 'on_deactivate'));
-    register_uninstall_hook(__FILE__, array($orb_wp_simple_ui_obj, 'on_uninstall'));
 }
 
 class Orbisius_WP_Admin_UI_Simplificator {
@@ -95,14 +94,14 @@ class Orbisius_WP_Admin_UI_Simplificator {
     /**
      * handles the singleton
      */
-    function get_instance() {
+    public static function get_instance() {
 		if (is_null(self::$instance)) {
             global $wpdb;
             
 			$cls = __CLASS__;	
 			$inst = new $cls;
 			
-			$site_url = get_settings('siteurl');
+			$site_url = site_url();
 			$site_url = rtrim($site_url, '/') . '/'; // e.g. http://domain.com/blog/
 
 			$inst->site_url = $site_url;
@@ -206,21 +205,16 @@ class Orbisius_WP_Admin_UI_Simplificator {
                 add_action('admin_bar_menu', array($this, 'add_switch'), 9999);
             }
             
-            wp_register_style($this->plugin_dir_name, $this->plugin_url . 'css/main.css', false, filemtime(ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR_BASE_DIR . '/css/main.css'));
-            wp_enqueue_style($this->plugin_dir_name);
-
             /*wp_enqueue_script(
                 $this->plugin_id_str . '_main_js',
                 $this->plugin_url . 'js/main.js'
             );*/
         }
 
-        if (!is_feed()) {
-            add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
-            add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer
-        }
+        add_action('wp_head', array($this, 'add_plugin_credits'), 1); // be the first in the header
+        add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer
         
-		add_action('wp_enqueue_scripts', array($this, 'load_scripts'));
+		add_action('wp_enqueue_scripts', array($this, 'load_scripts'), 10);
 
         // Add hook for admin <head></head>
         add_action('admin_head', array($this, 'my_custom_js'));
@@ -531,10 +525,6 @@ JS_EOF;
 
         // if we've introduced a new default key/value it'll show up.
         $opts = array_merge($this->plugin_default_opts, $opts);
-
-        if (empty($opts['purchase_thanks'])) {
-            $opts['purchase_thanks'] = $this->plugin_default_opts['purchase_thanks'];
-        }
 
         return $opts;
     }
