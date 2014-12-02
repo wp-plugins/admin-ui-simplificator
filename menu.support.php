@@ -75,5 +75,7 @@
                 <!-- AddThis Button END part2 -->
             </p>
         </div> <!-- /main_content -->
+
+        <?php Orbisius_WP_Admin_UI_SimplificatorUtil::output_orb_widget('author'); ?>
     </div> <!-- /webweb_wp_admin_ui_simplificator_admin -->
 </div>

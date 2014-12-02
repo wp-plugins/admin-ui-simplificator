@@ -548,7 +548,7 @@ JS_EOF;
      * This is what the plugin admins will see when they click on the main menu.
      * @var string
      */
-    private $plugin_landing_tab = '/menu.dashboard.php';
+    private $plugin_landing_tab = '/menu.settings.php';
 
     /**
      * Adds the settings in the admin menu
@@ -558,11 +558,16 @@ JS_EOF;
 //        add_options_page(__($this->plugin_name, "ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR"), __($this->plugin_name, "ORBISIUS_WP_ADMIN_UI_SIMPLIFICATOR"), 'manage_options', $this->plugin_dir_name . '/menu.settings.php');
         
 		if (!$this->canSimplify()) { // if this is the admin user show the plugin section
-	        add_menu_page(__($this->plugin_name, $this->plugin_dir_name), __($this->plugin_name, $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.dashboard.php', null, $this->plugin_url . '/images/cup.png');
+	        add_menu_page(__($this->plugin_name, $this->plugin_dir_name), __($this->plugin_name, $this->plugin_dir_name),
+                    'manage_options', $this->plugin_dir_name . '/menu.settings.php', null, $this->plugin_url . '/images/cup.png');
 	
-	        add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Dashboard', $this->plugin_dir_name), __('Dashboard', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.dashboard.php');
-	        add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Settings', $this->plugin_dir_name), __('Settings', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.settings.php');
-	        add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Help', $this->plugin_dir_name), __('Help', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.support.php');
+	        //add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Dashboard', $this->plugin_dir_name), __('Dashboard', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.dashboard.php');
+	        add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Settings', $this->plugin_dir_name),
+                    __('Settings', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.settings.php');
+            
+	        add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Help', $this->plugin_dir_name),
+                    __('Help', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.support.php');
+            
 	        //add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('Contact', $this->plugin_dir_name), __('Contact', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.contact.php');
 	        //add_submenu_page($this->plugin_dir_name . '/' . $this->plugin_landing_tab, __('About', $this->plugin_dir_name), __('About', $this->plugin_dir_name), 'manage_options', $this->plugin_dir_name . '/menu.about.php');
 	
@@ -682,11 +687,11 @@ JS_EOF;
             //$prefix = 'options-general.php?page=' . dirname(plugin_basename(__FILE__)) . '/';
             $prefix = $this->plugin_admin_url_prefix . '/';
 
-            $dashboard_link = "<a href=\"{$prefix}menu.dashboard.php\">" . __("Dashboard", $this->plugin_dir_name) . '</a>';
+            //$dashboard_link = "<a href=\"{$prefix}menu.dashboard.php\">" . __("Dashboard", $this->plugin_dir_name) . '</a>';
             $settings_link = "<a href=\"{$prefix}menu.settings.php\">" . __("Settings", $this->plugin_dir_name) . '</a>';
 
             array_unshift($links, $settings_link);
-            array_unshift($links, $dashboard_link);
+            //array_unshift($links, $dashboard_link);
         }
 
         return $links;
@@ -803,6 +808,30 @@ class Orbisius_WP_Admin_UI_SimplificatorUtil {
     const UNSERIALIZE_DATA = 2;
     const SERIALIZE_DATA = 3;
 
+    /**
+     * Loads news from Club Orbsius Site.
+     * <?php Orbisius_WP_Admin_UI_SimplificatorUtil::output_orb_widget(); ?>
+     */
+    public static function output_orb_widget($obj = '') {
+        ?>
+        <!-- Orbisius JS Widget -->
+            <?php
+                $naked_domain = !empty($_SERVER['DEV_ENV']) ? 'orbclub.com.clients.com' : 'club.orbisius.com';
+
+                if (!empty($_SERVER['DEV_ENV']) && is_ssl()) {
+                    $naked_domain = 'ssl.orbisius.com/club';
+                }
+
+				// obj could be 'author'
+                $obj = empty($obj) ? str_replace('.php', '', basename(__FILE__)) : sanitize_title($obj);
+
+                $params = '?' . http_build_query(array('p' => $obj, 'layout' => 'plugin', ));
+                echo '<div class="orbisius_ext_content"></div>' . "\n";
+                echo "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://$naked_domain/wpu/widget/$params';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'orbsius-js');</script>";
+            ?>
+            <!-- /Orbisius JS Widget -->
+        <?php
+    }
     /**
      * Checks if we are on a page that belongs to our plugin.
      * It is really annoying to see a notice in every section of WordPress.

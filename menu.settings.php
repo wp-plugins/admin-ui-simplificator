@@ -174,19 +174,7 @@ $plugin_file = dirname(__FILE__) . '/wp-admin-ui-simplificator.php';
                         </div> <!-- .postbox -->
                         <!-- /Newsletter-->
 
-                        <!-- Orbisius JS Widget -->
-						<?php
-							$naked_domain = !empty($_SERVER['DEV_ENV']) ? 'orbclub.com.clients.com' : 'club.orbisius.com';
-
-                            if (!empty($_SERVER['DEV_ENV']) && is_ssl()) {
-                                $naked_domain = 'ssl.orbisius.com/club';
-                            }
-
-							$params = '?' . http_build_query(array('p' => str_replace('.php', '', basename(__FILE__)), 'layout' => 'plugin', ));
-                            echo '<div class="orbisius_ext_content"></div>' . "\n";
-							echo "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://$naked_domain/wpu/widget/$params';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'orbsius-js');</script>";
-						?>
-                        <!-- /Orbisius JS Widget -->
+                        <?php Orbisius_WP_Admin_UI_SimplificatorUtil::output_orb_widget(); ?>
 
                         <!-- support options -->
                         <div class="postbox">

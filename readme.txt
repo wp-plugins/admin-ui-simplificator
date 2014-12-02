@@ -83,6 +83,8 @@ n/a
 * Fixed numerous warnings
 * Tested with WP 4.0.1
 * Removed boostrap file which wasn't used that much and could cause WP to break if wp-load couldn't be found in the expected path.
+* Removed the dashboard link ... wasn't used that much.
+* Added author in Help
 * Added Orbisius News Widget
 
 = 1.0.3 =
