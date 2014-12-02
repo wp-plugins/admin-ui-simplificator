@@ -215,29 +215,6 @@ class Orbisius_WP_Admin_UI_Simplificator {
         add_action('wp_footer', array($this, 'add_plugin_credits'), 1000); // be the last in the footer
         
 		add_action('wp_enqueue_scripts', array($this, 'load_scripts'), 10);
-
-        // Add hook for admin <head></head>
-        add_action('admin_head', array($this, 'my_custom_js'));
-        // Add hook for front-end <head></head>
-//        add_action('wp_head', array($this, 'my_custom_js'));
-    }
-
-    /**
-     * @see http://stackoverflow.com/questions/5849057/adding-script-to-wordpress-in-head-elemen
-     */
-    function my_custom_js() {
-        $plugin_url = $this->plugin_url;
-
-        echo <<< JS_EOF
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        if (jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content")) {
-            jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").html('Loading...');
-            jQuery(".webweb_wp_admin_ui_simplificator_admin .remote_content").load('{$plugin_url}zzz_remote.php');
-        }
-    });
-</script>
-JS_EOF;
     }
 
     /**
@@ -1256,89 +1233,5 @@ class Orbisius_WP_Admin_UI_SimplificatorCrawler {
 
     function get_content() {
         return $this->buffer;
-    }
-}
-
-/**
- * This class is a common class for every plugin developed by WebWeb.ca team.
- *
- * @author Svetoslav Marinov | http://WebWeb.ca
- * @package WebWeb_WP_LikeGateCommon
- */
-class Orbisius_WP_Admin_UI_SimplificatorService {
-    private $live = 0; // turn on when live!
-    private $service_end_point = 'http://orbisius.com/service/kv/1.0/';
-    private $dev_service_end_point = 'http://localhost/service/kv/1.0/';
-
-    private $method = null;
-    private $params = array();
-    private $meta = array();
-    private $data = array();
-
-    /**
-     * Setups the method to be called and
-     */
-    public function __construct($method, $params = array()) {
-        $method = strtolower($method);
-        $method = trim($method, ' .');
-        
-        // The format should be: wp.plugins.get_all as this API can be used by modile apps someday
-        if (!preg_match('#^[a-z][\w-]+\.([a-z][\w-]+\.)?[a-z][\w-]+$#si', $method)) {
-            throw new Exception('Invalid method.');
-        }
-
-        $this->live = empty($_SERVER['DEV_ENV']); // if it exists -> on dev machine.
-
-        $this->method = $method;
-        $this->params = $params;
-    }
-
-    /**
-     * Calls the remote service.
-     * It currently relies on caching from the calling method because
-     * I am assumming the data will be saved into the db.
-     * The result will contain data and meta section
-     */
-    public function call() {
-        $browser = new Orbisius_WP_Admin_UI_SimplificatorCrawler();
-
-        $end_point = $this->live ? $this->service_end_point : $this->dev_service_end_point;
-
-        $url = $end_point . '?' . http_build_query(array('method' => $this->method, 'params' => $this->params));
-
-        $this->status = 0;
-        $result_buffer = array();
-
-        if ($browser->fetch($url)) {
-            $buffer = $browser->get_content();
-
-            parse_str($buffer, $result_buffer);
-
-            if (!empty($result_buffer['meta'])) {
-                $this->meta = $result_buffer['meta'];
-                $this->data = $result_buffer['data'];
-                $this->status = 1;
-            }
-        }
-
-        return $this->status;
-    }
-
-    /**
-     * returns the meta that was previously filled out by a recent ->call
-     * @param void
-     * @return array
-     */
-    public function get_meta() {
-        return $this->meta;
-    }
-
-    /**
-     * returns the data that was previously filled out by a recent ->call
-     * @param void
-     * @return array
-     */
-    public function get_data() {
-        return $this->data;
     }
 }

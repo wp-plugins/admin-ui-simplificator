@@ -1,5 +1,5 @@
 === Admin UI Simplificator ===
-Contributors: lordspace
+Contributors: lordspace,orbisius
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7APYDVPBCSY9A
 Tags: admin ui, ux, admin ui, simple, simplificator, adminimize, better ui, better ux, simple ui color, scheme, theme, admin, dashboard, color scheme, plugin, interface, ui, metabox, hide, editor, minimal, menu, customization, interface, administration, lite, light, usability, lightweight, layout, zen
 Requires at least: 2.6.2
@@ -86,6 +86,7 @@ n/a
 * Removed the dashboard link ... wasn't used that much.
 * Added author in Help
 * Added Orbisius News Widget
+* Removed calls to zzz_custom
 
 = 1.0.3 =
 * Added a constant 'ADMIN_UI_SIMPLIFICATOR_DISABLE' that will allow you to access the admin area
