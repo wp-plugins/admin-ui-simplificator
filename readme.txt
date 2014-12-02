@@ -82,6 +82,7 @@ n/a
 * Fixed warnings on use of get_option
 * Fixed numerous warnings
 * Tested with WP 4.0.1
+* Removed boostrap file which wasn't used that much and could cause WP to break if wp-load couldn't be found in the expected path.
 
 = 1.0.3 =
 * Added a constant 'ADMIN_UI_SIMPLIFICATOR_DISABLE' that will allow you to access the admin area
